@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import Question from './Question'
+import React, { Component } from 'react';
+import Question from './Question';
 
 class QuestionPage extends Component {
   render() {
     return (
       <div>
-          <Question/>
+        <Question/>
+        QUESTION PAGE
       </div>
     )
   }

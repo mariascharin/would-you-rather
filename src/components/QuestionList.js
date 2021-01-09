@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Question from './Question'
+import React, { Component } from 'react';
+import Question from './Question';
 
 class QuestionList extends Component {
   render() {

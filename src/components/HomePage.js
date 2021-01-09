@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import Login from './Login'
-import QuestionList from './QuestionList'
+import React, { Component } from 'react';
+import Login from './Login';
+import QuestionList from './QuestionList';
 
 class HomePage extends Component {
   render() {
@@ -8,6 +8,7 @@ class HomePage extends Component {
       <div>
           <Login />
           <QuestionList />
+          HOME PAGE
       </div>
     )
   }

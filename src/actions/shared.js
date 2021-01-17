@@ -5,25 +5,6 @@ import { setAuthedUser } from './authedUser'
 
 const AUTHED_ID = 'tylermcginnis'
 
-export function handleInitialQuestions () {
-    return (dispatch) => {
-        return _getQuestions()
-            .then(({ questions }) => {
-                dispatch(receiveQuestions(questions))
-            })
-    }
-}
-
-export function handleInitialUsers () {
-    return (dispatch) => {
-        return _getUsers()
-            .then(({ users }) => {
-                dispatch(receiveUsers(users))
-            })
-    }
-}
-
-
 export function handleInitialData () {
     return (dispatch) => {
         Promise.all([
@@ -32,8 +13,7 @@ export function handleInitialData () {
         ]).then(([ questions, users  ]) => {
             dispatch(receiveQuestions(questions));
             dispatch(receiveUsers(users));
-            console.log('questions: ', questions);
-            console.log('users: ', users);
+            dispatch(setAuthedUser(AUTHED_ID));
         })
     }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Nav from './Nav';
 import HomePage from './HomePage';
@@ -29,4 +30,4 @@ class App extends Component {
     }
 }
 
-export default App
+export default connect()(App)

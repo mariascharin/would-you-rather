@@ -32,12 +32,15 @@ export function handleAddQuestion (question) {
     }
 }
 
-function answerQuestion (question) {
-    // WHAT TO DO HERE???
+function answerQuestion (user, questionId, option) {
     return {
         type: ANSWER_QUESTION,
-        question
-    }
+        answer: {
+            id: questionId,
+            answer: option,
+            userId: user,
+            }
+        }
 }
 
 export function handleAnswerQuestion (questionId, option) {
@@ -49,7 +52,6 @@ export function handleAnswerQuestion (questionId, option) {
             qid: questionId,
             answer: option
         })
-            .then(console.log('Return from _saveQuestionAnswer, question: ', question))
-            .then((question) => dispatch(answerQuestion(question)))
+            .then((question) => dispatch(answerQuestion(authedUser, questionId, option)))
     }
 }

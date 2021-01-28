@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import Question from './Question';
+import { connect } from 'react-redux'
 
 class QuestionPage extends Component {
   render() {
-    return (
-      <div>
-        <Question/>
-        QUESTION PAGE
-      </div>
-    )
+      const { id } = this.props
+      return (
+          <Question id={id}/>
+      )
   }
 }
 
-export default QuestionPage
+function mapStateToProps({}, props){
+    const { id } = props.match.params
+    return {
+        id,
+    }
+}
+
+export default connect(mapStateToProps)(QuestionPage)

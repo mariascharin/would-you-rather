@@ -34,19 +34,19 @@ class Question extends Component {
       optionOne: {
         ...question.optionOne,
         noVotes: question.optionOne.votes.length,
-        percentVoted: 100*question.optionOne.votes.length/(question.optionOne.votes.length + question.optionTwo.votes.length),
+        percentVoted: (100*question.optionOne.votes.length/(question.optionOne.votes.length + question.optionTwo.votes.length)||0),
         voted: question.optionOne.votes.includes(authedUser)
       },
       optionTwo: {
         ...question.optionTwo,
         noVotes: question.optionTwo.votes.length,
-        percentVoted: 100*question.optionTwo.votes.length/(question.optionOne.votes.length + question.optionTwo.votes.length),
+        percentVoted: (100*question.optionTwo.votes.length/(question.optionOne.votes.length + question.optionTwo.votes.length)||0),
         voted: question.optionTwo.votes.includes(authedUser),
       },
       totVotes: question.optionOne.votes.length + question.optionTwo.votes.length
     }
 
-      return (
+    return (
       <div>
         <div className='tweet'>
           <img

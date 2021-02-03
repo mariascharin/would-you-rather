@@ -4,46 +4,35 @@ import {Badge, ProgressBar} from "react-bootstrap";
 
 class UserDetails extends Component {
   render() {
-    const { userId, users, questions } = this.props;
-    const user = users[userId];
-    const questionsAsked = Object.values(questions)
-        .filter((question)=>(question.author === userId))
-        .length;
-    const questionsAnswered = Object.values(questions)
-        .filter((question)=>(
-            question.optionOne.votes.includes(userId) ||
-            question.optionTwo.votes.includes(userId)
-        ))
-        .length;
-    const totalScore = questionsAsked + questionsAnswered;
-    const userStats = {
-      userId,
+    const {
+      name,
+      avatarURL,
       questionsAsked,
       questionsAnswered,
       totalScore,
-    }
+    } =  this.props.user;
 
     return (
         <div>
           <div className='tweet'>
             <img
-                src={user.avatarURL}
-                alt={`Avatar of ${user.name}`}
+                src={avatarURL}
+                alt={`Avatar of ${name}`}
                 className='avatar'
             />
             <div className='tweet-info'>
               <div>
-                <span>{user.name}</span>
+                <span>{name}</span>
                 <div className='question-detail'>
-                  <span>Answered questions: <b>{userStats.questionsAnswered}</b></span>
+                  <span>Answered questions: <b>{questionsAnswered}</b></span>
                 </div>
                 <div className='question-detail'>
-                  <span>Asked questions: <b>{userStats.questionsAsked}</b></span>
+                  <span>Asked questions: <b>{questionsAsked}</b></span>
                 </div>
               </div>
             </div>
             <div className='question-detail'>
-              <span>Score: <b>{userStats.totalScore}</b></span>
+              <span>Score: <b>{totalScore}</b></span>
             </div>
           </div>
         </div>
@@ -51,13 +40,4 @@ class UserDetails extends Component {
   }
 }
 
-function mapStateToProps({users, questions}, props) {
-  const { id }=props;
-  return {
-    userId: id,
-    users,
-    questions,
-  }
-}
-
-export default connect(mapStateToProps)(UserDetails)
+export default UserDetails

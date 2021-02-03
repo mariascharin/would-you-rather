@@ -44,12 +44,12 @@ class NewQuestionPage extends Component {
     const handleSubmit = (e) => {
       e.preventDefault()
 
-
-      dispatch(handleAddQuestion({
+      const question = {
         optionOneText: formatQuestion(optionOneText),
         optionTwoText: formatQuestion(optionTwoText),
-        authedUser }));
+        authedUser }
 
+      dispatch(handleAddQuestion(question));
       goToHome();
     }
 

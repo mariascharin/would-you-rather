@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import UserDetails from './UserDetails';
-import QuestionSummary from "./QuestionSummary";
-import {Tab} from "react-bootstrap";
 
 class LeaderBoardPage extends Component {
   render() {
+      const { users } = this.props;
+      const totUsers = Object.values(users).map((user) => {
+          const questionsAsked = user.questions.length ? user.questions.length : 0;
+          const questionsAnswered = Object.values(user.answers).length ? Object.values(user.answers).length : 0;
+          const totalScore = questionsAsked + questionsAnswered;
+          return {
+              id: user.id,
+              name: user.name,
+              avatarURL: user.avatarURL,
+              questionsAsked,
+              questionsAnswered,
+              totalScore,
+          }
+          });
+      const sortedUserList = totUsers.sort((a, b) =>
+          b.totalScore - a.totalScore)
+
     return (
         <div>
             <h3 className='center'>Leader Board</h3>
             <ul className='dashboard-list'>
-                {this.props.usersIds
-                    .map((id) => (
-                            <li key={id}>
-                                <UserDetails id={id} />
+                {sortedUserList
+                    .map((user) => (
+                            <li key={user.id}>
+                                <UserDetails user={user} />
                             </li>
                         )
                     )}
@@ -23,11 +38,9 @@ class LeaderBoardPage extends Component {
   }
 }
 
-function mapStateToProps({users, questions}) {
+function mapStateToProps({ users }) {
     return {
-        usersIds: Object.keys(users),
         users,
-        questions,
     }
 }
 

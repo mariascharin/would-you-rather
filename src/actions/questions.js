@@ -1,4 +1,5 @@
-import { _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA'
+import { _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA';
+import { addQuestionToUser } from "./users";
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ANSWER_QUESTION = 'ANSWER_QUESTION'
@@ -28,7 +29,10 @@ export function handleAddQuestion (question) {
             optionOneText: question.optionOneText,
             optionTwoText: question.optionTwoText
         })
-            .then((question) => dispatch(addQuestion(question)))
+            .then((question) => {
+                dispatch(addQuestion(question));
+                dispatch(addQuestionToUser(question));
+            })
     }
 }
 

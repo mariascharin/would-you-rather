@@ -1,5 +1,5 @@
 import { _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA';
-import { addQuestionToUser } from "./users";
+import { addQuestionToUser, addAnswerToUser } from "./users";
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ANSWER_QUESTION = 'ANSWER_QUESTION'
@@ -56,6 +56,9 @@ export function handleAnswerQuestion (questionId, option) {
             qid: questionId,
             answer: option
         })
-            .then((question) => dispatch(answerQuestion(authedUser, questionId, option)))
+            .then(() => {
+                dispatch(answerQuestion(authedUser, questionId, option))
+                dispatch(addAnswerToUser(authedUser, questionId, option))
+            })
     }
 }

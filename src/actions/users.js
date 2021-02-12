@@ -17,7 +17,6 @@ export function addQuestionToUser (question) {
 }
 
 export function addAnswerToUser (user, questionId, option) {
-
     return {
         type: ADD_ANSWER_TO_USER,
         user,

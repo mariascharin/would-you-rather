@@ -7,6 +7,8 @@ import HomePage from './HomePage';
 import QuestionPage from './QuestionPage';
 import NewQuestionPage from './NewQuestionPage';
 import LeaderBoardPage from './LeaderBoardPage';
+import Login from './Login';
+import NotFound from "./NotFound";
 import { handleInitialData } from '../actions/shared'
 
 class App extends Component {
@@ -15,22 +17,26 @@ class App extends Component {
     }
 
     render() {
+        const {authedUser} = this.props;
         return (
             <Router>
                 <Fragment>
                     <LoadingBar />
-                    <div className='container'>
-                        <Nav/>
-                        {this.props.loading === true
-                            ? null
-                            : <div>
+                    {authedUser === '' || authedUser === null
+                        ?
+                        <Route component={Login}/>
+                        :
+                        <div className='container'>
+                            <Nav authedUser={authedUser}/>
+                            <div>
                                 <Route path='/' exact component={HomePage}/>
                                 <Route path='/questions/:id' component={QuestionPage}/>
                                 <Route path='/add' component={NewQuestionPage}/>
                                 <Route path='/leaderboard' component={LeaderBoardPage}/>
+                                <Route path='/notfound' component={NotFound}/>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </Fragment>
             </Router>
         )
@@ -38,8 +44,10 @@ class App extends Component {
 }
 
 function mapStateToProps ({ authedUser }) {
+
     return {
-        loading: authedUser === null
+        authedUser,
+        loading: authedUser === '',
     }
 }
 

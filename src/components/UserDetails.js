@@ -14,13 +14,13 @@ class UserDetails extends Component {
 
     return (
         <div>
-          <div className='tweet'>
+          <div className='question'>
             <img
                 src={avatarURL}
                 alt={`Avatar of ${name}`}
                 className='avatar'
             />
-            <div className='tweet-info'>
+            <div className='question-info'>
               <div>
                 <span>{name}</span>
                 <div className='question-detail'>

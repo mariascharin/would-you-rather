@@ -48,13 +48,13 @@ class Question extends Component {
 
     return (
       <div>
-        <div className='tweet'>
+        <div className='question'>
           <img
               src={author.avatarURL}
               alt={`Avatar of ${author.name}`}
               className='avatar'
           />
-          <div className='tweet-info'>
+          <div className='question-info'>
             <div>
               <span>Asked by {author.name}</span>
 

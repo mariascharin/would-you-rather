@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Logout from "./Logout";
 
 
-export default function Nav () {
+export default function Nav (authedUser) {
   return (
       <nav className='nav'>
         <ul>
@@ -20,6 +21,9 @@ export default function Nav () {
             <NavLink to='/leaderboard' activeClassName='active'>
               Leader Board
             </NavLink>
+          </li>
+          <li>
+            {authedUser === null || authedUser === '' || !authedUser ? null : <Logout /> }
           </li>
         </ul>
       </nav>

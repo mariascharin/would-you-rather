@@ -35,7 +35,6 @@ class QuestionSummary extends Component {
       return (<Redirect to={`/questions/${questionAmended.id}`} />)
     }
 
-    // <h4 className='center'>Asked by {author.name}</h4>
     if (question === null) {
       return <p>This question doesn't exist.</p>
     }
@@ -46,13 +45,13 @@ class QuestionSummary extends Component {
     }
       return (
       <div>
-        <div className='tweet'>
+        <div className='question'>
           <img
               src={author.avatarURL}
               alt={`Avatar of ${author.name}`}
               className='avatar'
           />
-          <div className='tweet-info'>
+          <div className='question-info'>
             <div>
               <span>{author.name} asks:</span>
               <div>Would you rather</div>

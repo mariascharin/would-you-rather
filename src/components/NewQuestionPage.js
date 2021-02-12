@@ -54,11 +54,12 @@ class NewQuestionPage extends Component {
     }
 
     return (
-          <div className='tweet'>
+          <div>
             <h3 className='center'>Create New Question</h3>
+            <div className='new-question'>
             <div>Complete the question:</div>
             <div>Would you rather...</div>
-            <form className='new-tweet' onSubmit={handleSubmit}>
+            <form className='new-question' onSubmit={handleSubmit}>
               <input
                   type='text'
                   placeholder="Option One"
@@ -67,7 +68,7 @@ class NewQuestionPage extends Component {
                   maxLength={textMaxLength}
               />
               {textLeft.optionOne <= 10 && (
-                  <div className='tweet-length'>
+                  <div className='question-length'>
                     {textLeft.optionOne}
                   </div>
               )}
@@ -82,7 +83,7 @@ class NewQuestionPage extends Component {
                   maxLength={textMaxLength}
               />
               {textLeft.optionTwo <= 10 && (
-                  <div className='tweet-length'>
+                  <div className='question-length'>
                     {textLeft.optionTwo}
                   </div>
               )}
@@ -93,6 +94,7 @@ class NewQuestionPage extends Component {
                 Submit
               </button>
             </form>
+            </div>
           </div>
     )
   }
